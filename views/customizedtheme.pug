@@ -1,0 +1,142 @@
+extends basee
+
+block content
+  .card.card-custom.card-shadowless.rounded-top-0(style="margin-top:120")
+    // begin::Body
+    .card-body.p-0
+      .row.justify-content-center.py-8.px-8.py-lg-15.px-lg-10
+        .col-xl-12.col-xxl-10
+          // begin::Wizard Form
+          h3(style='font-weight: 600;') Customized Theme
+          hr
+          .d-flex
+            h4 Color
+            .d-flex.flex-wrap(style='')
+              .ml-2.obscula(colas= "#f4cc07",style='background-color: #f4cc07; border-radius: 50%; width: 20px; height: 20px;')
+              .ml-2.obscula(colas= "#65cc65",style='background-color: #65cc65; border-radius: 50%; width: 20px; height: 20px;')
+              .ml-2.obscula(colas= "#8ce3fc",style='background-color: #8ce3fc; border-radius: 50%; width: 20px; height: 20px;')
+              .ml-2.obscula(colas= "#ccccfe",style='background-color: #ccccfe; border-radius: 50%; width: 20px; height: 20px;')
+              .ml-2.obscula(colas= "#ee9798",style='background-color: #ee9798; border-radius: 50%; width: 20px; height: 20px;')
+              .ml-2.obscula(colas= "#EF98FA",style='background-color: #EF98FA; border-radius: 50%; width: 20px; height: 20px;')
+              .ml-2.obscula(colas= "#bababa",style='background-color: #bababa; border-radius: 50%; width: 20px; height: 20px;')
+              p.ml-3(style='font-size: 15px;') HEX#
+              input.ml-2.appencolo(style='background-color: #bababa; outline: 0; border:0; color: black; top: -5px; position: relative;', value=`${theme.color}`, readonly)
+              p(style=' font-size: 15px; font-weight: 900; margin-left: 10px;') Color Picker
+              .examples(style='margin-left: -110px;')
+                .example.sqaure
+                  input.oncolor(type='text', value=`${theme.color}`, style='opacity: 0;', data-coloris='')
+          form.addTheme
+            .row
+              .col-md-4          
+                input.okssssss(type='text', placeholder='Company Name', value=`${theme.companyname?theme.companyname:''}`, style='background-color: #bababa;' readonly)
+                img.ml-3.edititua(src='/images/draw.png', style='width: 20px;', alt='')
+                if theme.logo
+                  .d-flex.mt-3
+                    span(style='font-size: 20px; font-weight: bolder;')
+                      span Logo
+                  img.liga(src=`${theme.logo}`, width="50px", alt="")
+                .d-flex.mt-3
+                  span(style='font-size: 20px; font-weight: bolder;')
+                    span Change Logo
+                input.logos(type="file")
+                .d-flex.mt-3
+                  img(src='/images/logo.png', width='50px', alt='')
+                  span(style='margin-left: 5px; font-size: 30px; font-weight: bolder;')
+                    span(style='color:black;') B
+                    span(style='color: #f0ab46') HIVE
+                div
+                  p.m-0.font-weight-bolder Unique indentifier term ?
+                  input.okssssss2.uniqueidentifier(type='text', placeholder='', value=`${theme.uniqueidentifierterm?theme.uniqueidentifierterm:''}`, style='background-color: #e7e4e4;')
+                .mt-4
+                  p.m-0.font-weight-bolder Unit name term ?
+                  input.okssssss2.uniquenameterm(type='text', placeholder='', value=`${theme.unitnameterm?theme.unitnameterm:''}`, style='background-color: #e7e4e4;')
+                .mt-4
+                  p.m-0.font-weight-bolder First Scan term ?
+                  input.okssssss2.firstscanterm(type='text', placeholder='', value=`${theme.firstscanterm?theme.firstscanterm:''}`, style='background-color: #e7e4e4;')
+                .mt-4
+                  p.m-0.font-weight-bolder Data field 1 ?
+                  input.okssssss2.datafield1(type='text', placeholder='', value=`${theme.datafield1?theme.datafield1:''}`, style='background-color: #e7e4e4;')
+                .mt-4
+                  p.m-0.font-weight-bolder Data field 2 ?
+                  input.okssssss2.datafield2(type='text', placeholder='', value=`${theme.datafield2?theme.datafield2:''}`, style='background-color: #e7e4e4;')
+                .mt-4
+                  p.m-0.font-weight-bolder Data field 3 ?
+                  input.okssssss2.datafield3(type='text', placeholder='', value=`${theme.datafield3?theme.datafield3:''}`, style='background-color: #e7e4e4;')
+                .mt-4
+                  p.m-0.font-weight-bolder Data field 4 ?
+                  input.okssssss2.datafield4(type='text', placeholder='', value=`${theme.datafield4?theme.datafield4:''}`, style='background-color: #e7e4e4;')
+              .col-md-4
+                .p-4(style='min-height: 200px; width: 100%; border: 2px solid gray; border-radius: 10px;')
+                  h1(style='font-weight: bold;') Color Bar
+                  -let a=8;
+                  each item in theme.colorbars
+                    -a++
+                    .d-flex.align-items-center.mt-4
+                      div.obsssdds(style="position:relative")
+                        div.ultrass(style="background-color: transparent; width:35px; height:25px; z-index:9999; position: absolute; top:0; left:-5")
+                        .examples(style='margin-left: -140px; z-index:9999;')
+                          .example.sqaure
+                            input(type='text',class=`oncolor${a}`, value=`${item.color}`, style='opacity: 0;', data-coloris='', data-toggle="tooltip",title="Select Color",href="javascript:;")
+                        div.pluto.d-none(style="position: absolute;top:-40; left:-39;")
+                          .taals.d-flex.justify-content-center.align-items-center(style="position:relative; background-color: gray; width: 100px; height: 30px; color: white")
+                            p.m-0(style="font-size: 15px") Select Color
+                            .aliunga(style="width:20px; height:20px; background-color: gray; position:absolute; bottom:-10;clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); left:50; transform: translate(-50%, 0%);")
+                      input.okssssss2.ml-2.form-control(type='text', placeholder='', value=`${item.name}`, style='background-color: #e7e4e4;' readonly)
+                      img.ml-2.aaedus(src='/images/draw.png', style='width: 20px; height: 20px;',data-id=`${item._id}`, alt='')
+                      img.ml-2.aaedusDel(data-dola=`dela${a}`,class=`dela${a}`,src='/images/delete.png', style='width: 20px; height: 20px;',data-id=`${item._id}`, alt='')
+                      .d-none.alif.align-items-center(data-id=`${item._id}`, data-colas=`${a}`)
+                        button.btn-warning.btn  
+                          span(class=`noload${a}`) Update
+                          .spinner-border.d-none(class=`load${a}`,role='status', style="color:white")
+                            span.sr-only Loading...
+                  .opa(style='background-color: #f8de71; border-radius: 50%; display: flex; justify-content: center; align-items: center; display: inline-block; padding: 10px; margin-top:20px;')
+                    img(src='/images/plus.png', style='width: 20px; margin:0; padding: 0;', alt='')  
+              .col-md-12.d-flex.justify-content-center
+                button.btn.btn-lg(type='button', style='background-color: white; font-weight: bold; box-shadow: 0px 0px 2px gray; margin-right: 5px;') Cancel
+                button.btn.btn-lg(type='submit', style='background-color: #f6d444; color: white; font-weight: bold;')
+                  span(class=`noload84`) Save
+                  .spinner-border.d-none(class=`load84`,role='status', style="color:white")
+                    span.sr-only Loading...
+
+  #coolorbur.modal.fade(tabindex='-1', role='dialog', data-backdrop='static', data-keyboard='false')
+    .modal-dialog.modal-dialog-centered(role='document')
+      .modal-content
+        .modal-header
+          h5#exampleModalCenterTitle.modal-title Add color Bar
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+        form.addcolabur
+          .modal-body
+            .d-flex.justify-content-between
+              p.ml-3(style='font-size: 15px; font-weight: bold;') Color
+              .d-flex
+                p(style=' font-size: 15px; font-weight: 900; margin-left: 10px;') Color Picker
+                .examples(style='margin-left: -110px; ')
+                  .example.sqaure
+                    input.oncolor2(type='text', value='green', style='opacity: 0;', data-coloris='')
+            input.ml-2.appencolo2.form-control(style='background-color: #bababa; color: black; padding: 0px 10px !important; outline: 0; border: 0;')
+            .ml-3.mt-3
+              p(style='font-weight: bold; font-size: 15px;') Name
+              input.form-control.culsname(type='text')
+          .modal-footer
+            button.btn(type='submit', style='background-color: #f6d444; color: white')
+              span.noload Add
+              .spinner-border.load.d-none(role='status', style="color:white")
+                span.sr-only Loading...
+            button.btn.butas(type='button', style='background-color: #f6d444; color: white', data-dismiss='modal') Cancel
+  #coolorburDel.modal.fade(tabindex='-1', role='dialog', data-backdrop='static', data-keyboard='false')
+    .modal-dialog.modal-dialog-centered(role='document')
+      .modal-content
+        .modal-header
+          h5#exampleModalCenterTitle.modal-title(style="font-size: 20px; font-weight:bold") Confirm
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+        form.addcolabur
+          .modal-body
+            p(style="font-size: 20px") Are you sure you want to delete?
+          .modal-footer
+            button.btn.btn-danger.obszaa(type='button', style='color: white')
+              span.noload88 Delete
+              .spinner-border.load88.d-none(role='status', style="color:white")
+                span.sr-only Loading...
+            button.btn.butas(type='button', style='background-color: #f6d444; color: white', data-dismiss='modal') Cancel

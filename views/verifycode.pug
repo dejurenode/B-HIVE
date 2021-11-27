@@ -1,0 +1,29 @@
+extends baselogin 
+
+block content
+  .row.mt-5
+    .col-md-5.mx-auto.text-center
+      img(src='/images/logo.png', width='170px', alt='')
+      h1(style='font-weight: bolder')
+        | B
+        span(style='color: #f0ab46') HIVE
+      form.verify
+        .form-group.mt-5.pt-5(style='\
+        display: flex;\
+        flex-direction: column;\
+        align-items: flex-start;\
+        ')
+          label(for='', style='font-weight: bolder; font-size: 20px; margin-bottom: -8px') Enter Verification code
+          input.form-control.code(type='text', maxlength='6', style='\
+          background: transparent;\
+          border: none;\
+          padding: 0%;\
+          border-bottom: 1px solid black;\
+          border-radius: 0%;\
+          ')
+        button.btn.btn-block.mt-5.mb-5(type='submit', style='background-color: #f6d444; font-size: 20px; color: white')
+          span.noload Confirm
+          .spinner-border.load.d-none(role='status', style="color:white")
+            span.sr-only Loading...
+block content2
+  script(src="/js/script.js")

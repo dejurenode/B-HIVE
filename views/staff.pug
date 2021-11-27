@@ -1,0 +1,143 @@
+extends basee
+
+block content
+  .card.card-custom.card-shadowless.rounded-top-0(style="margin-top:120")
+    // begin::Body
+    .card-body.p-0
+      .row.justify-content-center.py-8.px-8.py-lg-15.px-lg-10
+        .col-xl-12.col-xxl-10
+          // begin::Wizard Form
+          .row.mb-5.placedOrder
+            .col-md-12.d-flex.justify-content-between.align-items-center
+              .m-0.p-0
+                h3.page-title.d-flex.justify-content-center.align-items-center.m-0.p-0
+                  b Staff
+              .m-0.addStaff(style='background-color: #f8de71; margin-top: 20px; display: inline-block; padding: 10px; border-radius: 50%; ')
+                img(src='/images/plus.png ', style='width: 20px; ', alt=' ')
+          .row
+            .col-md-12
+              table#example.table.table-striped.table-bordered.dt-responsive.nowrap(style='width:100%')
+                thead
+                  tr
+                    th ID #
+                    th First Name
+                    th Last name
+                    th Action
+                tbody
+                  each item in staff
+                    tr
+                      td= `${item._id}`
+                      td= `${item.firstname}`
+                      td= `${item.lastname}`
+                      td
+                        img.okaa(src='/images/draw.png', data-id=`${item._id}`, style='width: 20px;', alt='')
+                        img.okaa(src='/images/delete.png',  data-id=`${item._id}`, style='width: 20px;', alt='')
+        // end::Wizard Form
+  // end::Body
+  #AddStaffModal.modal.fade(tabindex='-1', role='dialog', data-backdrop='static', data-keyboard='false')
+    .modal-dialog.modal-dialog-centered(role='document')
+      .modal-content
+        .modal-header
+          h5#exampleModalCenterTitle.modal-title(style='font-weight: bold;') Edit Staff
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+        .modal-body
+          form.addingssta
+            .ml-3.mt-3
+              p(style='font-weight: bold; font-size: 15px;') First Name
+              input.form-control.firstname(type='text')
+            .ml-3.mt-3
+              p(style='font-weight: bold; font-size: 15px;') Last Name
+              input.form-control.lastname(type='text')
+            .ml-3.mt-3
+              p(style='font-weight: bold; font-size: 15px;') Email
+              input.form-control.emails(type='text')
+            .ml-3.mt-3
+              p(style='font-weight: bold; font-size: 15px;') Passord
+              input.form-control.pisswords(type='text')              
+            .ml-3.mt-3
+              p(style='font-weight: bold; font-size: 15px;') Location
+              select.form-control.locationname(name='', id='')
+                option(value=`nolocation`, disabled='disabled', selected='selected', hidden='hidden') Select Location
+                each itemkl in locations
+                  option(class="opassta",value=`${itemkl.name}`,data-id=`${itemkl._id}`, data-ink=`${JSON.stringify(itemkl.teams)}`)= `${itemkl.name}`
+            .ml-3.mt-3.pltume.d-none
+              p(style='font-weight: bold; font-size: 15px;') Team
+              select.form-control.tume(name='', id='')
+                option(value=`noteam`, disabled='disabled', selected='selected', hidden='hidden') Select Team
+            .ml-3.mt-3
+              p(style='font-weight: bold; font-size: 15px;') Role
+              select.form-control.rule(name='', id='')
+                option(value=`norule`, disabled='disabled', selected='selected', hidden='hidden') Select Role
+                each itemkl in roles
+                  option(class="opassta",value=`${itemkl.name}`, data-id=`${itemkl._id}`)= `${itemkl.name}`
+            .modal-footer
+              button.btn(type='submit', style='background-color: #f6d444; color: white')
+                span.noload Save
+                .spinner-border.load.d-none(role='status', style="color:white")
+                  span.sr-only Loading...
+              button.btn.butas(type='submit', style='background-color: #8e9997; color: white', data-dismiss="modal") Cancel
+
+  #StaffModal.modal.fade(tabindex='-1', role='dialog', data-backdrop='static', data-keyboard='false')
+    .modal-dialog.modal-dialog-centered(role='document')
+      .modal-content
+        .modal-header
+          h5#exampleModalCenterTitle.modal-title(style='font-weight: bold;') Edit Staff
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+        .modal-body
+          form.editsStuff
+            .ml-3.mt-3
+              p(style='font-weight: bold; font-size: 15px;') ID #
+              input.form-control.idEdit(type='text', readonly='', value='27662176165532', style='background-color: gray; color: white;')
+            .ml-3.mt-3
+              p(style='font-weight: bold; font-size: 15px;') First Name
+              input.form-control.firstEdit(type='text')
+            .ml-3.mt-3
+              p(style='font-weight: bold; font-size: 15px;') Last Name
+              input.form-control.LastEdit(type='text')
+            .ml-3.mt-3
+              p(style='font-weight: bold; font-size: 15px;') Location
+                select.form-control.locationnameedit(name='', id='')
+                  option(value=`nolocation`, disabled='disabled', selected='selected', hidden='hidden') Select Location
+                  each itemkl in locations
+                    option(class="opassta",value=`${itemkl.name}`,data-id=`${itemkl._id}`, data-ink=`${JSON.stringify(itemkl.teams)}`)= `${itemkl.name}`
+            .ml-3.mt-3.pltume2.d-none
+              p(style='font-weight: bold; font-size: 15px;') Team
+              select.form-control.tume2(name='', id='')
+                option(value='model town') team1
+                option(value='model town') team2
+            .ml-3.mt-3
+              p(style='font-weight: bold; font-size: 15px;') Role
+              select.form-control.rulings(name='', id='')
+                option(value='model town') Physician
+                option(value='model town') Doctor
+            .row 
+              .col-md-12
+                .row.mt-5
+                  .col-md-7
+                    button.btn.okchange.form-control(type='button', style='background-color: #f6d444;  color: white; font-weight: bold; font-size: 20px;')
+                      | Change password 
+                      span.down
+                        i.fas.fa-chevron-down
+                .d-none.openchung
+                  .row.mt-5
+                    .col-md-7
+                      label(for='', style='font-size: 20px; font-weight: bold;') Old Password
+                      input.form-control.oldiChung(type='text', placeholder='Enter your Old password')
+                  .row.mt-5
+                    .col-md-7
+                      label(for='', style='font-size: 20px; font-weight: bold;') New Password
+                      input.form-control.newiChung(type='text', placeholder='Enter your New password')
+                  .row
+                    .col-md-7
+                      button.btn.btn-block.chungPussword(type='button', style='background-color: #f6d444; color: white; font-size: 15px; font-weight: bold; margin-top: 15px;')
+                        span.noload2 Update Password
+                        .spinner-border.load2.d-none(role='status', style="color:white")
+                          span.sr-only Loading...
+            .modal-footer
+              button.btn(type='submit', style='background-color: #f6d444; color: white')
+                span.noload3 Add
+                .spinner-border.load3.d-none(role='status', style="color:white")
+                  span.sr-only Loading...
+              button.btn.butas(type='button', style='background-color: #f6d444; color: white', data-dismiss='modal') Cancel

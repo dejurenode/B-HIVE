@@ -1,0 +1,49 @@
+extends baselogin 
+
+block content
+  .row.mt-5
+    .col-md-5.mx-auto.text-center
+      img(src='/images/logo.png', width='170px', alt='')
+      h1(style='font-weight: bolder')
+        | B
+        span(style='color: #f0ab46') HIVE
+      form.form-login
+        .form-group(style='\
+        display: flex;\
+        flex-direction: column;\
+        align-items: flex-start;\
+        ')
+          label(for='', style='font-weight: bolder; font-size: 20px; margin-bottom: -8px') Email
+          input.form-control.email(type='text', style='\
+          background: transparent;\
+          border: none;\
+          padding: 0%;\
+          border-bottom: 1px solid black;\
+          border-radius: 0%;\
+          ')
+        .form-group(style='\
+        display: flex;\
+        flex-direction: column;\
+        align-items: flex-start;\
+        ')
+          label(for='', style='font-weight: bolder; margin-bottom: -8px; font-size: 20px') Password
+          input.form-control.password(type='text', style='\
+          background: transparent;\
+          border: none;\
+          padding: 0%;\
+          border-bottom: 1px solid black;\
+          border-radius: 0%;\
+          ')
+        .d-flex.justify-content-between
+          h4
+          a(href='/emailVerification', style='color: black; font-size: 16px') Forgot password 
+        button.btn.btn-block.mt-5(type='submit' style='background-color: #f6d444; font-size: 20px; color: white')
+          span.noload Login
+          .spinner-border.load.d-none(role='status', style="color:white")
+            span.sr-only Loading...
+
+      .d-flex.justify-content-between.mt-3
+        h5
+        h5
+          | Not a member yet?
+          a(href='/signup', style='color: black; font-size: 14px') Sign Up

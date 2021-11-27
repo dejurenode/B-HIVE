@@ -1,0 +1,58 @@
+extends basee
+
+block content
+  .card.card-custom.card-shadowless.rounded-top-0(style="margin-top:120")
+    // begin::Body
+    .card-body.p-0
+      .row.justify-content-center.py-8.px-8.py-lg-15.px-lg-10
+        .col-xl-12.col-xxl-10
+          // begin::Wizard Form
+          .row
+            .col-md-6
+              .row
+                .col-md-12
+                  h1= `${admin.name}`
+              form.profileupdate
+                .row.mt-5
+                  .col-md-7
+                    label(for='', style='font-size: 20px; font-weight: bold;') Name 
+                    input.form-control.profilename(type='text', placeholder='Enter your name', value=`${admin.name}` )
+                .row.mt-5
+                  .col-md-7
+                    label(for='', style='font-size: 20px; font-weight: bold;') Cell
+                    input.form-control.profilephone(type='text', placeholder='Enter your cell no', value=`${admin.phone?admin.phone:''}`)
+                .row.mt-5
+                  .col-md-7
+                    label(for='', style='font-size: 20px; font-weight: bold;') Email
+                    input.form-control(type='text', placeholder='Enter your email', value=`${admin.email}`, readonly='')
+                .row
+                  .col-md-7
+                    button.btn.btn-block(type='submit', style='background-color: #f6d444; color: white; font-size: 15px; font-weight: bold; margin-top: 15px;')
+                      span.noload Save
+                      .spinner-border.load.d-none(role='status', style="color:white")
+                        span.sr-only Loading...
+            .col-md-6
+              form.passwordprof
+                .row.mt-5
+                  .col-md-7.mx-auto
+                    button.btn.okchange.form-control(type='button', style='background-color: #f6d444;  color: white; font-weight: bold; font-size: 20px;')
+                      | Change password 
+                      span.down
+                        i.fas.fa-chevron-down
+                .d-none.openchung
+                  .row.mt-5
+                    .col-md-7.mx-auto
+                      label(for='', style='font-size: 20px; font-weight: bold;') Old Password
+                      input.form-control.oldi(type='text', placeholder='Enter your Old password')
+                  .row.mt-5
+                    .col-md-7.mx-auto
+                      label(for='', style='font-size: 20px; font-weight: bold;') New Password
+                      input.form-control.newi(type='text', placeholder='Enter your Old password')
+                  .row
+                    .col-md-7.mx-auto
+                      button.btn.btn-block(type='submit', style='background-color: #f6d444; color: white; font-size: 15px; font-weight: bold; margin-top: 15px;')
+                        span.noload2 Update Password
+                        .spinner-border.load2.d-none(role='status', style="color:white")
+                          span.sr-only Loading...
+            // end::Wizard Form
+    // end::Body
