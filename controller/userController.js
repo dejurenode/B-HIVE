@@ -149,7 +149,7 @@ exports.isLoggedIn = async(req, res, next) => {
         if (true) {
             try {
                 const decoded = await promisify(jwt.verify)(
-                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTM4M2VmYmM0YmE1MWM4ZDljYjQyYSIsImlhdCI6MTYzNzA1NzY2NywiZXhwIjoxNjQ0ODMzNjY3fQ.ZBQV6EYdfz4p5jZ9eN8ASnx9VaGdUvWQz4VNAoMp4b4",
+                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTYyOWIyNWY4Y2QxM2ZlOTU0YTc5MCIsImlhdCI6MTYzODAwODgxNCwiZXhwIjoxNjQ1Nzg0ODE0fQ.-XZm-vSZRMzkmjHFnJfCpgNA0AP6rpS918MF78VGU2s",
                     process.env.JWT_SECRET
                 );
                 const freshUser = await Admin.findById(decoded.id);
@@ -162,7 +162,7 @@ exports.isLoggedIn = async(req, res, next) => {
                 res.locals.user = freshUser;
                 req.user = freshUser;
                 req.jwt =
-                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTM4M2VmYmM0YmE1MWM4ZDljYjQyYSIsImlhdCI6MTYzNzA1NzY2NywiZXhwIjoxNjQ0ODMzNjY3fQ.ZBQV6EYdfz4p5jZ9eN8ASnx9VaGdUvWQz4VNAoMp4b4";
+                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTYyOWIyNWY4Y2QxM2ZlOTU0YTc5MCIsImlhdCI6MTYzODAwODgxNCwiZXhwIjoxNjQ1Nzg0ODE0fQ.-XZm-vSZRMzkmjHFnJfCpgNA0AP6rpS918MF78VGU2s";
 
                 console.log(req.user);
 

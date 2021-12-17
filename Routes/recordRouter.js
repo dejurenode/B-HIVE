@@ -4,6 +4,7 @@ const adminController = require("../controller/adminController");
 const recordController = require("../controller/recordController");
 const authenticationController = require("../controller/authenticationController");
 const User = require("../model/userModel");
+const Record = require("../model/recordModel");
 const router = express.Router({ mergeParams: true });
 
 router
@@ -19,6 +20,37 @@ router
         authenticationController.protect(User),
         recordController.uploadFieldsUser2,
         recordController.updaterecord
+    );
+router
+    .route("/checkAccount/:email")
+    .get(
+        recordController.uploadFieldsUser2,
+        recordController.checkAccount
+    );
+router
+    .route("/login")
+    .post(
+        recordController.uploadFieldsUser2,
+        recordController.login
+    );
+router
+    .route("/logout")
+    .post(authenticationController.protect(Record), recordController.logouts);
+router
+    .route("/getit/:id")
+    .get(recordController.getit);
+router
+    .route("/changePasswordss")
+    .patch(
+        authenticationController.protect(Record),
+        recordController.uploadFieldsUser2,
+        recordController.changePasswordss
+    );
+router
+    .route("/changepassword/:id")
+    .post(
+        recordController.uploadFieldsUser2,
+        recordController.changepassword
     );
 router
     .route("/deleterecord/:id/:ip/:version")

@@ -8,6 +8,10 @@
     color: white !important;
 }
 
+.openha {
+    width: 450px !important
+}
+
 .modalssbackdrop {
     position: fixed;
     top: 0;

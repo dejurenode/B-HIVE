@@ -19,6 +19,13 @@ const recordSchema = new mongoose.Schema({
     field4: {
         type: String,
     },
+    email: {
+        type: String,
+        unique: true,
+    },
+    password: {
+        type: String,
+    },
     photos: [{
         name: {
             type: String,
@@ -100,6 +107,9 @@ const recordSchema = new mongoose.Schema({
             default: Date.now,
         },
     }, ],
+    token: [{
+        type: String,
+    }, ],
     createdAt: {
         type: String,
         default: Date.now,
@@ -108,7 +118,14 @@ const recordSchema = new mongoose.Schema({
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
 });
+// for bcrypt the password
 
+recordSchema.methods.correctPassword = async function(
+    candidatePassword,
+    userPassword
+) {
+    return await bcrypt.compare(candidatePassword, userPassword);
+};
 const Record = mongoose.model("Record", recordSchema);
 
 module.exports = Record;

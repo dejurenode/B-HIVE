@@ -36,10 +36,15 @@ $(document).ready(function() {
             }, 1000);
         }
     });
-    // console.log($(".example").children(".clr-field").children("button"));
-    // $(".oncolor7").tooltip();
-    // $(".tooltip").css("left", "70px !important");
-    // console.log($(".tooltip"));
+    $(document).on('click', '.brand-toggle', function() {
+        console.log($('.heresligas').hasClass('openha'));
+        if ($('.heresligas').hasClass('openha')) {
+            $('.heresligas').removeClass('openha');
+        } else {
+            $('.heresligas').addClass('openha');
+        }
+    })
+
     $(document).on("click", ".opa", function() {
         $("#coolorbur").modal("show");
     });

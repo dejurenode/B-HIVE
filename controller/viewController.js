@@ -260,16 +260,16 @@ exports.resetCode = catchAsync(async(req, res, next) => {
 });
 exports.profile = catchAsync(async(req, res, next) => {
     console.log("hahahhahahahahah");
-    if (req.user) {
-        console.log("hahahhahahahahah-------------------------------");
+    // if (req.user) {
+    console.log("hahahhahahahahah-------------------------------");
 
-        console.log(req.user);
-        res.status(200).render("profile", {
-            admin: req.user,
-        });
-    } else {
-        res.status(200).render("login", {
-            title: "All",
-        });
-    }
+    console.log(req.user);
+    res.status(200).render("profile", {
+        admin: req.user,
+    });
+    // } else {
+    //     res.status(200).render("login", {
+    //         title: "All",
+    //     });
+    // }
 });

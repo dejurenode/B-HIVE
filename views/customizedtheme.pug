@@ -20,11 +20,11 @@ block content
               .ml-2.obscula(colas= "#EF98FA",style='background-color: #EF98FA; border-radius: 50%; width: 20px; height: 20px;')
               .ml-2.obscula(colas= "#bababa",style='background-color: #bababa; border-radius: 50%; width: 20px; height: 20px;')
               p.ml-3(style='font-size: 15px;') HEX#
-              input.ml-2.appencolo(style='background-color: #bababa; outline: 0; border:0; color: black; top: -5px; position: relative;', value=`${theme.color}`, readonly)
+              input.ml-2.appencolo(style='background-color: #bababa; outline: 0; border:0; color: black; top: -5px; position: relative;', value=`#${theme.color.length>7? theme.color.substring(3):theme.color.substring(1)}`, readonly)
               p(style=' font-size: 15px; font-weight: 900; margin-left: 10px;') Color Picker
               .examples(style='margin-left: -110px;')
                 .example.sqaure
-                  input.oncolor(type='text', value=`${theme.color}`, style='opacity: 0;', data-coloris='')
+                  input.oncolor(type='text', value=`#${theme.color.length>7? theme.color.substring(3):theme.color.substring(1)}`, style='opacity: 0;', data-coloris='')
           form.addTheme
             .row
               .col-md-4          

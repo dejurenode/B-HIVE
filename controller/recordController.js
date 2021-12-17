@@ -482,6 +482,74 @@ exports.deleterecord = catchAsync(async(req, res, next) => {
         });
     }
 });
+exports.checkAccount = catchAsync(async(req, res, next) => {
+    let record = await Record.aggregate([{
+        $match: { email: req.params.email }
+    }]);
+    if (record.length > 0) {
+        res.status(200).json({
+            status: "success",
+            recordid: record[0]._id,
+        });
+    } else {
+        return next(new AppError('record not found on this Email', 400));
+    }
+})
+exports.getit = cattchAsync(async(req, res, next) => {
+    let record = await Record.findById(req.params.id);
+    res.status(200).json({
+        status: "success",
+        data: record,
+    })
+})
+exports.logouts = catchAsync(async(req, res) => {
+    let abc = await Record.findById(req.user.id);
+
+    let ali = abc.token.filter((item) => {
+        if (String(item) == String(req.headers.jwt)) {
+            return false;
+        }
+        return true;
+    });
+    abc.token = ali;
+
+    const dele = await abc.save({ validateBeforeSave: false });
+    console.log(dele);
+    res
+        .status(200)
+        .json({ status: "success", message: `logout successfully !` });
+});
+exports.changePasswordss = catchAsync(async(req, res, next) => {
+    const user = await Record.findById(req.user.id).select("+password");
+    console.log(user);
+    if (!user) {
+        return next(new AppError("No Record Found With That Id", 404));
+    }
+    if (req.body.password && req.body.passwordCurrent) {
+        console.log("hi");
+        if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
+            return next(new AppError("Your Current Password Is Wrong", 401));
+        }
+        req.body.passwords = req.body.password;
+        req.body.password = await bcrypt.hash(req.body.password, 12);
+    } else {
+        return next(new AppError("Password or confirm password is missing!", 404));
+    }
+    const userr = await Record.findByIdAndUpdate(req.user.id, req.body).select(
+        "+password"
+    );
+    res.status(200).json({
+        status: "success",
+        data: userr,
+    });
+})
+exports.changepassword = catchAsync(async(req, res, next) => {
+    req.body.password = await bcrypt.hash(req.body.password, 12)
+    let record = await Record.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+    });
+    createSendToken(record, 200, req, res);
+})
 exports.updaterecord = catchAsync(async(req, res, next) => {
     if (req.body.field1) {
         fieldss(req, 1, req.body.field1);
@@ -495,6 +563,7 @@ exports.updaterecord = catchAsync(async(req, res, next) => {
     if (req.body.field4) {
         fieldss(req, 4, req.body.field4);
     }
+
     if (req.files.image) {
         req.body.image = req.files.image[0].filename;
         let record = await Record.findById(req.params.id);
@@ -603,14 +672,91 @@ exports.updaterecord = catchAsync(async(req, res, next) => {
         record2.auditLogs.push(obj2);
         await record2.save();
     }
+    if (req.body.email) {
+        let record2 = await Record.findById(req.params.id);
+        let obj2 = {
+            username: req.user.name,
+            whatadd: `Email`,
+            ip: req.params.ip,
+            version: req.params.version,
+        };
+        record2.auditLogs.push(obj2);
+        await record2.save();
+    }
 
-    let record = await Record.findByIdAndUpdate(req.params.id, req.body);
+    let record = await Record.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+    });
     res.status(200).json({
         status: "success",
         data: record,
     });
 });
+const signToken = (id) => {
+    return jwt.sign({ id }, process.env.JWT_SECRET, {
+        expiresIn: process.env.JWT_EXPIRES_IN,
+    });
+};
+const createSendToken = async(user, statusCode, req, res) => {
+    let token = signToken(user._id);
+    tokens = token;
+    const countToken = user.token.filter((item) => {
+        if (item == token) {
+            return true;
+        }
+    });
+    if (countToken.length > 0) {} else {
+        user.token.push(token);
+    }
+    let ons = "";
+    if (user.locationss) {
+        ons = user.locationss;
+    }
 
+    await user.save({ validateBeforeSave: false });
+    // user.token = undefined;
+    if (user.password) user.password = undefined;
+    console.log(ons);
+    if (typeof ons === "object") {
+        res.status(statusCode).json({
+            status: "success",
+            token: tokens,
+            locationname: ons.name,
+            data: {
+                user,
+            },
+        });
+    } else {
+        res.status(statusCode).json({
+            status: "success",
+            token: tokens,
+            data: {
+                user,
+            },
+        });
+    }
+};
+exports.login = catchAsync(async(req, res, next) => {
+    const ObjectId = mongoose.Types.ObjectId;
+
+    const { email, password } = req.body;
+    if (!email || !password) {
+        return next(new AppError("please provide email and password!", 400));
+    }
+
+    const user = await Record.findOne({ email }).select("+password");
+    // if (!user || !(await user.correctPassword(password, user.password))) {
+    //     return next(new AppError("Incorrect email or password!", 401));
+    // }
+    if (!user) {
+        return next(new AppError("Incorrect email. Contact your Administrator", 400));
+    }
+    if (!(await user.correctPassword(password, user.password))) {
+        return next(new AppError("Incorrect password. Please retry", 400));
+    }
+
+    createSendToken(user, 200, req, res);
+})
 exports.addrecord = catchAsync(async(req, res, next) => {
     console.log(req.body);
     let record = await Record.create({});
