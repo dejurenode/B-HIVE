@@ -495,10 +495,18 @@ exports.checkAccount = catchAsync(async(req, res, next) => {
         return next(new AppError('record not found on this Email', 400));
     }
 })
-exports.getit = cattchAsync(async(req, res, next) => {
+exports.getit = catchAsync(async(req, res, next) => {
     let record = await Record.findById(req.params.id);
+    let admin = await Admin.findById(record.company);
+
     res.status(200).json({
         status: "success",
+        fileldsname: {
+            field1name: admin.datafield1,
+            field2name: admin.datafield2,
+            field3name: admin.datafield3,
+            field4name: admin.datafield4,
+        },
         data: record,
     })
 })
