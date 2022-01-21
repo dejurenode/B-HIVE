@@ -71,7 +71,6 @@ exports.editroles = catchAsync(async(req, res, next) => {
 });
 exports.customizedtheme = catchAsync(async(req, res, next) => {
     if (req.user) {
-
         let theme = await axios.get(
             `https://bhivee.herokuapp.com/api/v1/admins/customizedtheme`, {
                 headers: {
