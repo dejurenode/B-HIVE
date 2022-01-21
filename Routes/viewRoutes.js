@@ -4,7 +4,8 @@ const viewController = require("../controller/viewController");
 const userController = require("../controller/userController");
 
 const router = express.Router();
-router.get("/", userController.isLoggedIn, viewController.getLogin);
+router.get("/", userController.isLoggedIn, viewController.getLandingpage);
+// router.get("/", userController.isLoggedIn, viewController.getLogin);
 router.get("/signup", userController.isLoggedIn, viewController.getSignUp);
 router.get(
   "/emailVerification",
