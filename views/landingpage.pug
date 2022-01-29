@@ -15,7 +15,7 @@ head
   // Flaticon CSS
   link(rel='stylesheet', href='cssland/flaticon.css')
   // Bootstrap CSS
-  link(rel='stylesheet', href='cssland/bootstrap.min.css')
+  link(rel='stylesheet', href='/cssland/bootstrap.min.css')
   style.
     header.index-2 .menu {
     background: #ff8f00 !important;
@@ -25,18 +25,7 @@ head
     }
   // jquery js
   script(src='jsland/jquery.min.js')
-  // REVOLUTION STYLE SHEETS
-  // <link rel="stylesheet" type="text/css" href="css/revolution/settings.css" />
-  // REVOLUTION LAYERS STYLES
-  // <link rel="stylesheet" type="text/css" href="css/revolution/layers.css" />
-  // REVOLUTION NAVIGATION STYLES
-  //
-    <link
-    rel="stylesheet"
-    type="text/css"
-    href="css/revolution/navigation.css"
-    />
-  // REVOLUTION JS FILES
+
   script(src='jsland/jquery.themepunch.tools.min.js')
   script(src='jsland/jquery.themepunch.revolution.min.js')
   // PARTICLES ADD-ON FILES
@@ -76,7 +65,7 @@ head
           a(href='index.html')
             img(src='imgland/logo.png', style='width: 60px', alt='MobFire')
         .col-md-10.col-sm-8.col-xs-6
-          .menu.move-right.show
+          .menu.move-right.oksaas
             .toggle
               span
             ul
@@ -84,8 +73,7 @@ head
                 a(href='#review', title='Signup') Signup
               li
                 a(href='#contact-us', title='Login') Login
-  // ====== Header End ======
-  // ====== Slider Start ======
+
   .slider-2
     #rev_slider_8_1_wrapper.rev_slider_wrapper.fullscreen-container(data-alias='particle-effect-three6', data-source='gallery', style='background: #ffffff; padding: 0px')
       // START REVOLUTION SLIDER 5.4.1 fullscreen mode
@@ -101,18 +89,12 @@ head
               img(src='imgland/ones.jpg', alt='', data-ww="['full-proportional','full-proportional','full-proportional','full-proportional']", data-hh="['full-proportional','full-proportional','full-proportional','full-proportional']", width='1920', height='1080', data-no-retina='')
             // LAYER NR. 2
             #slide-16-layer-6.tp-caption.tp-resizeme.heading(data-x="['center','center','center','center']", data-hoffset="['0','0','0','0']", data-y="['top','top','top','top']", data-voffset="['0','0','0','0']", data-fontsize="['60','60','40','40']", data-lineheight="['80','80','60','60']", data-width='none', data-height='none', data-whitespace='nowrap', data-type='text', data-responsive_offset='on', data-wrapper_class='tp-nopointer', data-frames='[{"delay":500,"speed":1000,"frame":"0","from":"sX:2;sY:3;opacity:0;fb:10px;","to":"o:1;fb:0;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;fb:0;","ease":"Power3.easeInOut"}]', data-textalign="['center','center','center','center']", data-paddingtop='[0,0,0,0]', data-paddingright='[0,0,0,0]', data-paddingbottom='[0,0,0,0]', data-paddingleft='[0,0,0,0]')
-              h1(style='color: #ff5526; font-size: 100px !important')
-                | BHIVE STAFF
-                br
-                //
-                  <div style="background-color: white !important">
-                  <a href="javascript:void(0)"
-                  ><img src="imgland/appstore.png" alt="App Store"
-                  /></a>
-                  </div>
+              h1(style='color: #ff5526;')
+                div(style="padding-top : 120px; font-size: 100px !important;") BHIVE STAFF
+
             // LAYER NR. 3
             #slide-16-layer-17.tp-caption.rev-btn.tp-resizeme.download-from(data-x="['center','center','center','center']", data-hoffset="['0','0','0','0']", data-y="['top','top','top','top']", data-voffset="['0','0','0','0']", data-whitespace='nowrap', data-type='button', data-actions='', data-responsive_offset='on', data-frames='[{"delay":900,"speed":1000,"frame":"0","from":"y:100px;sX:2;sY:3;opacity:0;fb:20px;","to":"o:1;fb:0;","ease":"Power3.easeInOut"},{"delay":"wait","speed":600,"frame":"999","to":"auto:auto;fb:0;","ease":"Power3.easeInOut"},{"frame":"hover","speed":"200","ease":"Linear.easeNone","to":"o:1;rX:0;rY:0;rZ:0;z:0;fb:0;","style":"c:rgba(255,255,255,1);"}]', data-textalign="['inherit','inherit','inherit','inherit']", data-paddingtop='[0,0,0,0]', data-paddingright='[35,35,35,35]', data-paddingbottom='[0,0,0,0]', data-paddingleft='[35,35,35,35]', data-blendmode='multiply', style='z-index: 8; margin-top: -120px; outline: none')
-              .download
+              .download(Style="margin-top:200px !important")
                 a(href='javascript:void(0)')
                   img(src='imgland/appstore.png', alt='App Store')
               .download
@@ -123,6 +105,14 @@ head
         var tpj = jQuery;
         var revapi8;
         tpj(document).ready(function () {
+        $(document).on('click','.oksaas', function(){
+        if($('.oksaas').hasClass('show')){
+          $('.oksaas').removeClass('show')
+        }else{
+          $('.oksaas').addClass('show')
+        }
+        })
+        $('.oksaas').addClass('show');
         if (tpj("#rev_slider_8_1").revolution == undefined) {
         revslider_showDoubleJqueryError("#rev_slider_8_1");
         } else {
@@ -629,7 +619,7 @@ head
               img(src='imgland/ones.jpg', alt='', data-ww="['full-proportional','full-proportional','full-proportional','full-proportional']", data-hh="['full-proportional','full-proportional','full-proportional','full-proportional']", width='1920', height='1080', data-no-retina='')
             // LAYER NR. 2
             #slide-16-layer-6.tp-caption.tp-resizeme.heading(data-x="['center','center','center','center']", data-hoffset="['0','0','0','0']", data-y="['top','top','top','top']", data-voffset="['0','0','0','0']", data-fontsize="['60','60','40','40']", data-lineheight="['80','80','60','60']", data-width='none', data-height='none', data-whitespace='nowrap', data-type='text', data-responsive_offset='on', data-wrapper_class='tp-nopointer', data-frames='[{"delay":500,"speed":1000,"frame":"0","from":"sX:2;sY:3;opacity:0;fb:10px;","to":"o:1;fb:0;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;fb:0;","ease":"Power3.easeInOut"}]', data-textalign="['center','center','center','center']", data-paddingtop='[0,0,0,0]', data-paddingright='[0,0,0,0]', data-paddingbottom='[0,0,0,0]', data-paddingleft='[0,0,0,0]')
-              h1(style='color: #ff5526; font-size: 100px !important')
+              h1(style='color: #ff5526; font-size: 100px !important;')
                 | BHIVE ADMIN
                 br
                 //
